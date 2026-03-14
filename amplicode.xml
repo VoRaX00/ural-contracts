@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AmplicodePersistenceUnitSettings">
+    <persistence-units>
+      <persistence-unit moduleName="ural-contracts-service" name="Default">
+        <packages>
+          <package value="ru.ural" />
+        </packages>
+      </persistence-unit>
+      <persistence-unit moduleName="ural-contracts-db" name="Default" />
+    </persistence-units>
+  </component>
+</project>

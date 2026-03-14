@@ -1,0 +1,42 @@
+server:
+  port: ${SERVER_PORT}
+
+spring:
+  application:
+    name: ural-contracts
+    version: @project.version@
+  datasource:
+    url: ${DB_URL}/${DB_NAME}
+    username: ${DB_USER}
+    password: ${DB_PASS}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        generate_statistics: false
+        show_sql: ${SHOW_SQL}
+        check_nullability: true
+        hbm2ddl:
+          auto: validate
+
+  liquibase:
+    enabled: true
+    liquibase-schema: public
+    database-change-log-table: ural_contracts_log
+    database-change-log-lock-table: ural_contracts_lock
+    change-log: classpath:db/changelog.yaml
+
+security:
+  jwt:
+    custom-decoder: true
+
+logging:
+  level:
+    root: ${LOGGING_LEVEL_ROOT}
+    org:
+      springframework: INFO
+      hibernate: INFO
+      apache:
+        tomcat:
+          util: WARN

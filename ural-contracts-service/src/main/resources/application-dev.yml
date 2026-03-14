@@ -1,0 +1,44 @@
+server:
+  port: 10905
+
+spring:
+  application:
+    name: ural-contracts
+    version: @project.version@
+  datasource:
+    url: jdbc:postgresql://localhost:10900/ural
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        generate_statistics: false
+        show_sql: true
+        check_nullability: true
+        hbm2ddl:
+          auto: validate
+        default_schema: ural_cars
+
+  liquibase:
+    enabled: true
+    liquibase-schema: public
+    database-change-log-table: ural_cars_log
+    database-change-log-lock-table: ural_cars_lock
+    change-log: classpath:db/changelog-master.xml
+    default-schema: ural_cars
+
+security:
+  jwt:
+    custom-decoder: true
+
+logging:
+  level:
+    root: info
+    org:
+      springframework: INFO
+      hibernate: INFO
+      apache:
+        tomcat:
+          util: WARN
