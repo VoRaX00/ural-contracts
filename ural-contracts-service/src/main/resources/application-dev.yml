@@ -19,15 +19,15 @@ spring:
         check_nullability: true
         hbm2ddl:
           auto: validate
-        default_schema: ural_cars
+        default_schema: ural_contracts
 
   liquibase:
     enabled: true
     liquibase-schema: public
-    database-change-log-table: ural_cars_log
-    database-change-log-lock-table: ural_cars_lock
+    database-change-log-table: ural_contracts_log
+    database-change-log-lock-table: ural_contracts_lock
     change-log: classpath:db/changelog-master.xml
-    default-schema: ural_cars
+    default-schema: ural_contracts
 
 security:
   jwt:
