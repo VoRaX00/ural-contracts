@@ -1,5 +1,5 @@
 server:
-  port: 10905
+  port: 10906
 
 spring:
   application:
@@ -30,8 +30,8 @@ spring:
     default-schema: ural_contracts
 
 contract-integrations:
-  cars-url: http://localhost:10904
-  cargo-url: http://localhost:10903
+  cars-url: http://localhost:10904/api/cars
+  cargo-url: http://localhost:10905/api/cargo
 
 logging:
   level:

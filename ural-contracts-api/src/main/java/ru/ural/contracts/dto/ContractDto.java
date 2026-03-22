@@ -27,6 +27,9 @@ public class ContractDto {
     @Schema(description = "Id груза")
     private CargoDto cargo;
 
+    @Schema(description = "Статус")
+    private String status;
+
     @Schema(description = "Стоимость")
     private BigDecimal price;
 

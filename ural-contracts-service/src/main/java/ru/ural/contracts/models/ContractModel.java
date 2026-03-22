@@ -24,6 +24,8 @@ public class ContractModel {
 
     private BigDecimal price;
 
+    private String status;
+
     private ZonedDateTime createdAt;
 
     private ZonedDateTime updatedAt;
