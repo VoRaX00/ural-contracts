@@ -25,7 +25,8 @@ spring:
     liquibase-schema: public
     database-change-log-table: ural_contracts_log
     database-change-log-lock-table: ural_contracts_lock
-    change-log: classpath:db/changelog.yaml
+    change-log: classpath:db/changelog-master.xml
+    default-schema: ural_contracts
 
 contract-integrations:
   cars-url: ${CAR_URL}
