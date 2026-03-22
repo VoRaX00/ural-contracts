@@ -1,4 +1,4 @@
-package ru.ural.configs;
+package ru.ural.contracts.configs;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,10 +12,11 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import ural.ru.configs.AllowedUrls;
-import ural.ru.filters.ExceptionFilterHandler;
+import ru.ural.configs.AllowedUrls;
+import ru.ural.filters.ExceptionFilterHandler;
 
 @Slf4j
 @Configuration
@@ -29,15 +30,19 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(
             HttpSecurity http,
-            Converter<Jwt, ? extends AbstractAuthenticationToken> jwtAuthenticationConverter) throws Exception {
+            Converter<Jwt, ? extends AbstractAuthenticationToken> jwtAuthenticationConverter,
+            AuthenticationEntryPoint authenticationEntryPoint
+    ) throws Exception {
 
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(sessionManagementConfigurer ->
                         sessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .oauth2ResourceServer(resourceServerConfigurer ->
-                        resourceServerConfigurer.jwt(jwtConfigurer ->
-                                jwtConfigurer.jwtAuthenticationConverter(jwtAuthenticationConverter)))
+                        resourceServerConfigurer
+                                .authenticationEntryPoint(authenticationEntryPoint)
+                                .jwt(jwtConfigurer ->
+                                    jwtConfigurer.jwtAuthenticationConverter(jwtAuthenticationConverter)))
                 .authorizeHttpRequests(this::authorizeHttpRequests)
                 .addFilterBefore(exceptionFilterHandler, UsernamePasswordAuthenticationFilter.class)
                 .build();

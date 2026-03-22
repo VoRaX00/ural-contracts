@@ -1,4 +1,4 @@
-package ru.ural.entities;
+package ru.ural.contracts.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -6,8 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ru.ural.enums.StatusContract;
-import ural.ru.entities.BaseEntity;
+import ru.ural.contracts.enums.ContractStatus;
+import ru.ural.entities.BaseEntity;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
@@ -29,7 +29,7 @@ public class Contract extends BaseEntity {
 
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
-    private StatusContract status;
+    private ContractStatus status;
 
     @Column
     private BigDecimal price;
@@ -39,5 +39,11 @@ public class Contract extends BaseEntity {
 
     @Column
     private ZonedDateTime updatedAt;
+
+    @Column(nullable = false)
+    private String ownerUuid;
+
+    @Column(nullable = false)
+    private String relatedUserUuid;
 
 }

@@ -1,0 +1,34 @@
+package ru.ural.contracts.controllers;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
+import ru.ural.contracts.api.ContractsApi;
+import ru.ural.contracts.dto.ContractDto;
+import ru.ural.contracts.dto.ContractRequest;
+import ru.ural.contracts.entities.Contract;
+import ru.ural.contracts.mappers.ContractMapper;
+import ru.ural.contracts.models.ContractModel;
+import ru.ural.contracts.services.ContractService;
+
+@RestController
+@RequiredArgsConstructor
+public class ContractController implements ContractsApi {
+
+    private final ContractService contractService;
+
+    private final ContractMapper contractMapper;
+
+    @Override
+    public ResponseEntity<ContractDto> getById(Long id) {
+        var contract = contractService.getContractById(id);
+        return ResponseEntity.ok(contractMapper.toDto(contract));
+    }
+
+    @Override
+    public ResponseEntity<ContractDto> create(ContractRequest request) {
+        Contract contract = contractMapper.toEntity(request);
+        ContractModel model = contractService.create(contract);
+        return ResponseEntity.ok(contractMapper.toDto(model));
+    }
+}

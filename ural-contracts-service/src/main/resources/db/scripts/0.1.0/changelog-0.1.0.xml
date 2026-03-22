@@ -34,4 +34,15 @@
          </createTable>
     </changeSet>
 
+    <changeSet id="add new columns to contracts" author="kerzhakov">
+        <addColumn tableName="contracts">
+            <column name="owner_uuid" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="related_user_uuid" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>

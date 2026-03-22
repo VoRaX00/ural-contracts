@@ -1,4 +1,4 @@
-package ru.ural.dto;
+package ru.ural.contracts.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
@@ -7,17 +7,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.time.ZonedDateTime;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Schema(description = "Dto контракта")
-public class ContractDto {
-
-    @Schema(description = "Id контракта")
-    private Long id;
+public class ContractRequest {
 
     @Schema(description = "Id машины")
     private Long carId;
@@ -27,11 +22,5 @@ public class ContractDto {
 
     @Schema(description = "Стоимость")
     private BigDecimal price;
-
-    @Schema(description = "Дата создания")
-    private ZonedDateTime createdAt;
-
-    @Schema(description = "Дата обновления")
-    private ZonedDateTime updatedAt;
 
 }
