@@ -27,8 +27,8 @@
         <ural-security.version>1.9-SNAPSHOT</ural-security.version>
         <ural-gai-api.version>1.0-SNAPSHOT</ural-gai-api.version>
         <ural-users-api.version>1.0-SNAPSHOT</ural-users-api.version>
-        <ural-cars-api.version>1.2-SNAPSHOT</ural-cars-api.version>
-        <ural-cargo-api.version>1.2-SNAPSHOT</ural-cargo-api.version>
+        <ural-cars-api.version>1.3-SNAPSHOT</ural-cars-api.version>
+        <ural-cargo-api.version>1.3-SNAPSHOT</ural-cargo-api.version>
         <spring-boot.version>3.4.3</spring-boot.version>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
