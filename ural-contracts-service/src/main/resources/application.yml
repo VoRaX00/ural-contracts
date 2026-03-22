@@ -27,9 +27,9 @@ spring:
     database-change-log-lock-table: ural_contracts_lock
     change-log: classpath:db/changelog.yaml
 
-security:
-  jwt:
-    custom-decoder: true
+contract-integrations:
+  cars-url: ${CAR_URL}
+  cargo-url: ${CARGO_URL}
 
 logging:
   level:
