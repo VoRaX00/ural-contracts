@@ -7,10 +7,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.ural.cargo.dto.CargoDto;
 import ru.ural.cars.dto.CarDto;
+import ru.ural.contracts.dto.ContractDto;
 import ru.ural.contracts.entities.Contract;
 import ru.ural.contracts.enums.ContractStatus;
+import ru.ural.contracts.mappers.PaginatedMapper;
+import ru.ural.contracts.repositories.CustomContractRepository;
 import ru.ural.contracts.senders.CargoSender;
 import ru.ural.contracts.senders.CarsSender;
+import ru.ural.dto.PageDto;
+import ru.ural.dto.PaginatedParamsDto;
 import ru.ural.exceptions.NotFoundException;
 import ru.ural.contracts.mappers.ContractMapper;
 import ru.ural.contracts.models.ContractModel;
@@ -30,7 +35,11 @@ public class ContractService {
 
     private final ContractRepository contractRepository;
 
+    private final CustomContractRepository customContractRepository;
+
     private final ContractMapper contractMapper;
+
+    private final PaginatedMapper paginatedMapper;
 
     @NonNull
     public ContractModel getContractById(@NonNull Long id) {
@@ -72,6 +81,22 @@ public class ContractService {
         model.setCargo(cargoDto);
 
         return model;
+    }
+
+    public PageDto<ContractDto> getPageDto(PaginatedParamsDto paginatedParamsDto) {
+        var paramsModel = paginatedMapper.toModel(paginatedParamsDto);
+        var items = customContractRepository.getItems(paramsModel);
+        int totalResultCount = customContractRepository.getTotalResultCount(paramsModel.getFilters());
+        int totalPageCount = totalResultCount % paramsModel.getItemsOnPage() == 0
+                ? totalResultCount / paramsModel.getItemsOnPage()
+                : totalResultCount / paramsModel.getItemsOnPage() + 1;
+
+        return new PageDto<>(
+                paramsModel.getCurrentPageNumber(), totalPageCount,
+                totalResultCount,
+                contractMapper.toDto(items),
+                paramsModel.getItemsOnPage()
+        );
     }
 
     private String getUserUuid() {

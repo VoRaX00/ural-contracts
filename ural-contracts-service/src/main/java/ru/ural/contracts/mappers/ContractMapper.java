@@ -8,10 +8,16 @@ import ru.ural.contracts.dto.ContractRequest;
 import ru.ural.contracts.entities.Contract;
 import ru.ural.contracts.models.ContractModel;
 
+import java.util.List;
+
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface ContractMapper {
 
     ContractDto toDto(ContractModel contract);
+
+    ContractDto toDto(Contract contract);
+
+    List<ContractDto> toDto(List<Contract> contract);
 
     @Mapping(target = "ownerUuid", ignore = true)
     @Mapping(target = "relatedUserUuid", ignore = true)

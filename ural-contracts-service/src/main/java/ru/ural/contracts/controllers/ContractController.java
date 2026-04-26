@@ -10,6 +10,8 @@ import ru.ural.contracts.entities.Contract;
 import ru.ural.contracts.mappers.ContractMapper;
 import ru.ural.contracts.models.ContractModel;
 import ru.ural.contracts.services.ContractService;
+import ru.ural.dto.PageDto;
+import ru.ural.dto.PaginatedParamsDto;
 
 @RestController
 @RequiredArgsConstructor
@@ -30,5 +32,15 @@ public class ContractController implements ContractsApi {
         Contract contract = contractMapper.toEntity(request);
         ContractModel model = contractService.create(contract);
         return ResponseEntity.ok(contractMapper.toDto(model));
+    }
+
+    @Override
+    public ResponseEntity<ContractDto> edit(Long id, ContractRequest request) {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<PageDto<ContractDto>> getPage(PaginatedParamsDto paginatedParamsDto) {
+        return ResponseEntity.ok(contractService.getPageDto(paginatedParamsDto));
     }
 }
