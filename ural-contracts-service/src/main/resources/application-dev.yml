@@ -29,9 +29,17 @@ spring:
     change-log: classpath:db/changelog-master.xml
     default-schema: ural_contracts
 
+  kafka:
+    bootstrap-servers: localhost:11009
+
 contract-integrations:
   cars-url: http://localhost:10904/api/cars
   cargo-url: http://localhost:10905/api/cargo
+
+kafka:
+  notification-contract-topic:
+    name: ural-contract-topic
+    partitions: 1
 
 logging:
   level:

@@ -77,6 +77,16 @@
             <artifactId>mapstruct</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>ural-notifications-api</artifactId>
+        </dependency>
+
         <!--TEST-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

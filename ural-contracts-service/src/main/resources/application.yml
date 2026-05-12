@@ -28,9 +28,17 @@ spring:
     change-log: classpath:db/changelog-master.xml
     default-schema: ural_contracts
 
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
+
 contract-integrations:
   cars-url: ${CAR_URL}
   cargo-url: ${CARGO_URL}
+
+kafka:
+  notification-contract-topic:
+    name: ${NOTIFICATION_CONTRACT_TOPIC_NAME}
+    partitions: ${NOTIFICATION_CONTRACT_TOPIC_PARTITIONS}
 
 logging:
   level:

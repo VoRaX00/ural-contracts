@@ -23,12 +23,13 @@
 
     <properties>
         <java.version>21</java.version>
-        <ural-common-starter.version>1.16-SNAPSHOT</ural-common-starter.version>
+        <ural-common-starter.version>1.17-SNAPSHOT</ural-common-starter.version>
         <ural-security.version>1.9-SNAPSHOT</ural-security.version>
         <ural-gai-api.version>1.0-SNAPSHOT</ural-gai-api.version>
         <ural-users-api.version>1.0-SNAPSHOT</ural-users-api.version>
-        <ural-cars-api.version>1.3-SNAPSHOT</ural-cars-api.version>
-        <ural-cargo-api.version>1.3-SNAPSHOT</ural-cargo-api.version>
+        <ural-cars-api.version>1.6-SNAPSHOT</ural-cars-api.version>
+        <ural-cargo-api.version>1.5-SNAPSHOT</ural-cargo-api.version>
+        <ural-notifications-api.version>1.0-SNAPSHOT</ural-notifications-api.version>
         <spring-boot.version>3.4.3</spring-boot.version>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
@@ -38,6 +39,7 @@
         <lombok.mapstruct.binding.version>0.2.0</lombok.mapstruct.binding.version>
         <springdoc.version>2.8.0</springdoc.version>
         <testcontainer.version>1.21.4</testcontainer.version>
+        <spring.kafka.version>3.3.1</spring.kafka.version>
     </properties>
 
     <dependencyManagement>
@@ -88,6 +90,11 @@
                 <artifactId>ural-users-api</artifactId>
                 <version>${ural-users-api.version}</version>
             </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>ural-notifications-api</artifactId>
+                <version>${ural-notifications-api.version}</version>
+            </dependency>
 
             <!--Child dependencies-->
             <dependency>
@@ -121,6 +128,11 @@
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
                 <version>${springdoc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.kafka</groupId>
+                <artifactId>spring-kafka</artifactId>
+                <version>${spring.kafka.version}</version>
             </dependency>
 
             <!--TEST-->

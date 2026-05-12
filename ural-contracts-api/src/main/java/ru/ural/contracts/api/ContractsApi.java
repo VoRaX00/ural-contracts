@@ -27,6 +27,9 @@ public interface ContractsApi {
 
     @Operation(summary = "Получить список контрактов")
     @GetMapping
-    ResponseEntity<PageDto<ContractDto>> getPage(@RequestParam PaginatedParamsDto paginatedParamsDto);
+    ResponseEntity<PageDto<ContractDto>> getPage(PaginatedParamsDto paginatedParamsDto);
+
+    @PatchMapping("/{id}/status")
+    ResponseEntity<ContractDto> changeStatus(@PathVariable Long id, @RequestParam(required = false) Boolean isClose);
 
 }

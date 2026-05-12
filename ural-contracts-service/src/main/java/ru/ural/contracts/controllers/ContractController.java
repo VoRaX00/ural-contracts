@@ -43,4 +43,9 @@ public class ContractController implements ContractsApi {
     public ResponseEntity<PageDto<ContractDto>> getPage(PaginatedParamsDto paginatedParamsDto) {
         return ResponseEntity.ok(contractService.getPageDto(paginatedParamsDto));
     }
+
+    @Override
+    public ResponseEntity<ContractDto> changeStatus(Long id, Boolean isClose) {
+        return ResponseEntity.ok(contractService.changeStatus(id, isClose));
+    }
 }
